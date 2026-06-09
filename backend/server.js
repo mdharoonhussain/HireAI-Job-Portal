@@ -1,0 +1,30 @@
+const dotenv = require("dotenv");
+dotenv.config();
+
+const express = require("express");
+const connectDB = require("./config/db");
+const authRoutes = require("./routes/authRoutes");
+const userRoutes = require("./routes/userRoutes");
+const jobRoutes = require("./routes/jobRoutes");
+
+// console.log(process.env.CLOUDINARY_CLOUD_NAME);
+// console.log(process.env.CLOUDINARY_API_KEY);
+
+connectDB();
+
+const app = express();
+app.use(express.json());
+
+app.use("/api/auth", authRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/jobs", jobRoutes);
+
+app.get("/", (req, res) => {
+  res.send("Hello World");
+});
+
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on ${PORT}`);
+});
