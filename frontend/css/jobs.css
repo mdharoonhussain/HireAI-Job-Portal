@@ -1,0 +1,238 @@
+.jobs-container{
+  max-width:1200px;
+
+  margin:40px auto;
+
+  padding:20px;
+}
+
+.jobs-container h1{
+  text-align:center;
+
+  margin-bottom:30px;
+}
+
+.jobs-grid{
+  display:grid;
+
+  grid-template-columns:
+  repeat(auto-fit,minmax(320px,1fr));
+
+  gap:25px;
+}
+
+.job-card{
+  background:white;
+
+  padding:25px;
+
+  border-radius:12px;
+
+  box-shadow:
+  0 4px 12px rgba(0,0,0,.08);
+
+  transition:.3s;
+}
+
+.job-card:hover{
+  transform:translateY(-5px);
+}
+
+.job-card h3{
+  margin-bottom:10px;
+}
+
+.job-card p{
+  text-align:left;
+
+  margin:8px 0;
+}
+
+.skills{
+  display:flex;
+
+  flex-wrap:wrap;
+
+  gap:8px;
+
+  margin:15px 0;
+}
+
+.skill{
+  background:#e5e7eb;
+
+  padding:6px 12px;
+
+  border-radius:20px;
+
+  font-size:14px;
+}
+
+.apply-btn{
+  width:auto;
+  padding:12px 24px;
+  margin-top:20px;
+
+  background:#2563eb;
+  color:white;
+
+  border:none;
+  border-radius:8px;
+
+  cursor:pointer;
+
+  font-size:15px;
+  font-weight:600;
+}
+
+.apply-btn:hover{
+  background:#1d4ed8;
+}
+
+.nav-link{
+  text-decoration:none;
+
+  margin-right:15px;
+
+  color:#2563eb;
+
+  font-weight:600;
+}
+
+@media(max-width:768px){
+
+  .navbar{
+    padding:15px 20px;
+  }
+
+  .jobs-container{
+    padding:15px;
+  }
+
+}
+
+.apply-container{
+  margin-top:20px;
+}
+
+.apply-btn{
+  width:auto;
+}
+
+.modal{
+  display:none;
+
+  position:fixed;
+  top:0;
+  left:0;
+
+  width:100%;
+  height:100%;
+
+  background:rgba(0,0,0,.55);
+
+  justify-content:center;
+  align-items:center;
+
+  z-index:9999;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modal-content{
+  background:white;
+
+  width:450px;
+  max-width:90%;
+
+  padding:35px;
+
+  border-radius:15px;
+
+  text-align:center;
+
+  box-shadow:0 10px 25px rgba(0,0,0,.25);
+}
+
+.modal-content h3{
+  font-size:30px;
+  color:#111827;
+  margin-bottom:20px;
+}
+
+.modal-content p{
+  font-size:18px;
+  color:#4b5563;
+  margin-bottom:30px;
+}
+
+.modal-buttons{
+  display:flex;
+  gap:15px;
+  justify-content:center;
+}
+
+.modal-buttons button{
+  width:140px;
+  padding:12px;
+
+  border:none;
+  border-radius:8px;
+
+  font-size:16px;
+  font-weight:600;
+
+  cursor:pointer;
+}
+
+#cancelLogout{
+  background:#e5e7eb;
+  color:#111827;
+}
+
+#confirmLogout{
+  background:#dc2626;
+  color:white;
+}
+
+#cancelLogout:hover{
+  background:#d1d5db;
+}
+
+#confirmLogout:hover{
+  background:#b91c1c;
+}
+
+.applied-btn{
+  background:#dc2626;
+
+  color:white;
+
+  border:none;
+
+  padding:12px 24px;
+
+  border-radius:8px;
+
+  cursor:not-allowed;
+
+  font-weight:600;
+}
+
+.apply-btn{
+  background:#2563eb;
+
+  color:white;
+
+  border:none;
+
+  padding:12px 24px;
+
+  border-radius:8px;
+
+  cursor:pointer;
+
+  font-weight:600;
+}

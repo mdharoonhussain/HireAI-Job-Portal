@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Recruiter Dashboard</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="../css/style.css" />
+
+    <link rel="stylesheet" href="../css/dashboard.css" />
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <h2 class="logo">HireAI</h2>
+
+      <div class="nav-right">
+        <button id="logoutBtn">Logout</button>
+      </div>
+    </nav>
+
+    <div class="dashboard-container">
+      <h1 id="welcomeText">Welcome 👋</h1>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <h2 id="totalJobs">0</h2>
+          <p>Total Jobs</p>
+        </div>
+
+        <div class="stat-card">
+          <h2 id="totalApplications">0</h2>
+          <p>Applications</p>
+        </div>
+
+        <div class="stat-card">
+          <h2 id="totalShortlisted">0</h2>
+          <p>Shortlisted</p>
+        </div>
+
+        <div class="stat-card">
+          <h2 id="totalHired">0</h2>
+          <p>Hired</p>
+        </div>
+      </div>
+
+      <div class="dashboard-grid">
+        <a href="post-job.html" class="dashboard-card">
+          <i class="fa-solid fa-plus"></i>
+
+          <h3>Post Job</h3>
+
+          <p>Create a new job opening</p>
+        </a>
+
+        <a href="my-jobs.html" class="dashboard-card">
+          <i class="fa-solid fa-briefcase"></i>
+
+          <h3>My Jobs</h3>
+
+          <p>Manage posted jobs</p>
+        </a>
+
+        <a href="applicants.html" class="dashboard-card">
+          <i class="fa-solid fa-users"></i>
+
+          <h3>Applicants</h3>
+
+          <p>Review applications</p>
+        </a>
+
+        <a href="profile.html" class="dashboard-card">
+          <i class="fa-solid fa-user"></i>
+
+          <h3>Profile</h3>
+
+          <p>Manage recruiter profile</p>
+        </a>
+      </div>
+    </div>
+
+    <div id="logoutModal" class="modal">
+      <div class="modal-content">
+        <h2>Logout</h2>
+
+        <p>Are you sure you want to logout?</p>
+
+        <div class="modal-buttons">
+          <button id="cancelLogout" class="cancel-btn">Cancel</button>
+
+          <button id="confirmLogout" class="confirm-btn">Logout</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <script src="../js/utils.js"></script>
+
+    <script src="../js/recruiterDashboard.js"></script>
+  </body>
+</html>

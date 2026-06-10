@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Post Job</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/dashboard.css" />
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <h2 class="logo">HireAI</h2>
+
+      <div class="nav-right">
+        <a href="dashboard.html" class="dashboard-link"> Dashboard </a>
+
+        <button id="logoutBtn">Logout</button>
+      </div>
+    </nav>
+
+    <div class="dashboard-container">
+      <h1>Post New Job</h1>
+
+      <div class="form-card">
+        <form id="jobForm">
+          <input type="text" id="title" placeholder="Job Title" required />
+
+          <input type="text" id="company" placeholder="Company Name" required />
+
+          <input type="text" id="location" placeholder="Location" required />
+
+          <input
+            type="text"
+            id="salary"
+            placeholder="Salary (Ex: 8-12 LPA)"
+            required
+          />
+
+          <textarea
+            id="description"
+            placeholder="Job Description"
+            required
+          ></textarea>
+
+          <input
+            type="text"
+            id="skills"
+            placeholder="Skills (HTML,CSS,JavaScript)"
+            required
+          />
+
+          <button type="submit">Post Job</button>
+        </form>
+      </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <script src="../js/utils.js"></script>
+    <script src="../js/postJob.js"></script>
+  </body>
+</html>

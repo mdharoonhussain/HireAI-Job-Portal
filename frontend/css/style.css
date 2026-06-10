@@ -38,14 +38,12 @@ select{
   margin-bottom:15px;
 }
 
-button{
+.auth-page button{
+  width:100%;
   padding:10px;
-
   background:#2563eb;
   color:white;
-
   border:none;
-
   cursor:pointer;
 }
 

@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>My Applications</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="../css/style.css" />
+
+    <link rel="stylesheet" href="../css/dashboard.css" />
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <h2 class="logo">HireAI</h2>
+
+      <div class="nav-right">
+        <a href="dashboard.html" class="dashboard-link"> Dashboard </a>
+
+        <button id="logoutBtn">Logout</button>
+      </div>
+    </nav>
+
+    <div class="dashboard-container">
+      <h1>My Applications</h1>
+
+      <div id="applicationsContainer"></div>
+    </div>
+
+    <!-- Logout Modal -->
+
+    <div id="logoutModal" class="modal">
+      <div class="modal-content">
+        <h2>Logout</h2>
+
+        <p>Are you sure you want to logout?</p>
+
+        <div class="modal-buttons">
+          <button id="cancelLogout" class="cancel-btn">Cancel</button>
+
+          <button id="confirmLogout" class="confirm-btn">Logout</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <script src="../js/utils.js"></script>
+
+    <script src="../js/applications.js"></script>
+  </body>
+</html>

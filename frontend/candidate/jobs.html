@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Available Jobs</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/jobs.css" />
+  </head>
+
+  <body>
+    <!-- Navbar -->
+
+    <nav class="navbar">
+      <h2 class="logo">HireAI</h2>
+
+      <div>
+        <a href="dashboard.html" class="nav-link"> Dashboard </a>
+
+        <button id="logoutBtn">Logout</button>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+
+    <div class="jobs-container">
+      <h1>Available Jobs</h1>
+
+      <div id="jobsContainer" class="jobs-grid">
+        <!-- Jobs will come from JS -->
+      </div>
+    </div>
+
+    <!-- Toast -->
+
+    <div id="toast" class="toast"></div>
+
+    <div id="logoutModal" class="modal">
+      <div class="modal-content">
+        <h3>Logout</h3>
+
+        <p>Are you sure you want to logout from HireAI?</p>
+
+        <div class="modal-buttons">
+          <button id="cancelLogout">Cancel</button>
+
+          <button id="confirmLogout">Logout</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="../js/utils.js"></script>
+    <script src="../js/jobs.js"></script>
+  </body>
+</html>
