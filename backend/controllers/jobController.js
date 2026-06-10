@@ -170,10 +170,40 @@ const deleteJob = async (req, res) => {
   }
 };
 
+const getRecruiterJobs = async (req, res) => {
+  try {
+    // Only recruiters
+    if (req.user.role !== "recruiter") {
+      return res.status(403).json({
+        success: false,
+        message: "Only recruiters can view their jobs",
+      });
+    }
+
+    const jobs = await Job.find({
+      recruiter: req.user._id,
+    }).sort({ createdAt: -1 });
+
+    res.status(200).json({
+      success: true,
+      count: jobs.length,
+      jobs,
+    });
+  } catch (error) {
+    console.log(error);
+
+    res.status(500).json({
+      success: false,
+      message: "Server Error",
+    });
+  }
+};
+
 module.exports = {
   createJob,
   getAllJobs,
   getSingleJob,
   updateJob,
   deleteJob,
+  getRecruiterJobs,
 };
