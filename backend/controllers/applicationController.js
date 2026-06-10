@@ -1,5 +1,6 @@
 const Application = require("../models/Application");
 const Job = require("../models/Job");
+const sendEmail = require("../utils/sendEmail");
 
 // Apply for Job
 const applyForJob = async (req, res) => {
@@ -15,7 +16,7 @@ const applyForJob = async (req, res) => {
     }
 
     // Check if job exists
-    const job = await Job.findById(jobId);
+    const job = await Job.findById(jobId).populate("recruiter", "name email");
 
     if (!job) {
       return res.status(404).json({
@@ -41,6 +42,31 @@ const applyForJob = async (req, res) => {
     const application = await Application.create({
       candidate: req.user._id,
       job: jobId,
+    });
+
+    console.log("Recruiter:", job.recruiter);
+    console.log("Recruiter Email:", job.recruiter.email);
+    console.log("Candidate Name:", req.user.name);
+    console.log("Candidate Email:", req.user.email);
+
+    await sendEmail({
+      email: job.recruiter.email,
+      subject: "New Job Application Received",
+      message: `
+Hello ${job.recruiter.name},
+
+A new candidate has applied for your job.
+
+Job Title: ${job.title}
+
+Candidate Name: ${req.user.name}
+Candidate Email: ${req.user.email}
+
+Please login to HireAI Job Portal to review the application.
+
+Regards,
+HireAI Team
+`,
     });
 
     res.status(201).json({
@@ -148,8 +174,9 @@ const updateApplicationStatus = async (req, res) => {
       });
     }
 
-    const application =
-      await Application.findById(applicationId).populate("job");
+    const application = await Application.findById(applicationId)
+      .populate("job")
+      .populate("candidate", "name email");
 
     if (!application) {
       return res.status(404).json({
@@ -178,6 +205,25 @@ const updateApplicationStatus = async (req, res) => {
     application.status = status;
 
     await application.save();
+
+    await sendEmail({
+      email: application.candidate.email,
+      subject: `Application Status Updated - ${application.job.title}`,
+      message: `
+Hello ${application.candidate.name},
+
+Your application status has been updated.
+
+Job Title: ${application.job.title}
+
+New Status: ${status}
+
+Please login to HireAI Job Portal for more details.
+
+Regards,
+HireAI Team
+`,
+    });
 
     res.status(200).json({
       success: true,
