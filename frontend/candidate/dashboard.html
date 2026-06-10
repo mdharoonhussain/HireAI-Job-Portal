@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Candidate Dashboard</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/dashboard.css" />
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <h2 class="logo">HireAI</h2>
+
+      <button id="logoutBtn">Logout</button>
+    </nav>
+
+    <div class="dashboard-container">
+      <h1 id="welcomeText">Welcome 👋</h1>
+
+      <div class="dashboard-grid">
+        <a href="jobs.html" class="dashboard-card">
+          <i class="fa-solid fa-briefcase"></i>
+
+          <h3>View Jobs</h3>
+
+          <p>Browse available jobs</p>
+        </a>
+
+        <a href="my-applications.html" class="dashboard-card">
+          <i class="fa-solid fa-file-lines"></i>
+
+          <h3>My Applications</h3>
+
+          <p>Track applied jobs</p>
+        </a>
+
+        <a href="profile.html" class="dashboard-card">
+          <i class="fa-solid fa-user"></i>
+
+          <h3>My Profile</h3>
+
+          <p>Manage profile & resume</p>
+        </a>
+      </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <script src="../js/utils.js"></script>
+    <script src="../js/candidateDashboard.js"></script>
+  </body>
+</html>

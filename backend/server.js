@@ -9,6 +9,8 @@ const jobRoutes = require("./routes/jobRoutes");
 const applicationRoutes = require("./routes/applicationRoutes");
 const testRoutes = require("./routes/testRoutes");
 
+const cors = require("cors");
+
 // console.log(process.env.CLOUDINARY_CLOUD_NAME);
 // console.log(process.env.CLOUDINARY_API_KEY);
 
@@ -16,6 +18,7 @@ connectDB();
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
