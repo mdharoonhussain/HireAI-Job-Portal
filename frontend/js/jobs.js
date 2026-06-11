@@ -30,14 +30,16 @@ async function getJobs() {
 
 function displayJobs(jobs) {
   jobsContainer.innerHTML = "";
-  console.log("Jobs received:", jobs);
+  console.log("Applied Jobs Array:", appliedJobs);
 
   jobs.forEach((job) => {
+    console.log("Current Job:", job._id);
+    console.log("Already Applied:", appliedJobs.includes(job._id.toString()));
     const card = document.createElement("div");
 
     card.classList.add("job-card");
 
-    const alreadyApplied = appliedJobs.includes(job._id);
+    const alreadyApplied = appliedJobs.includes(job._id.toString());
 
     card.innerHTML = `
       <h3>${job.title}</h3>
@@ -127,36 +129,27 @@ async function applyJob(jobId) {
 let appliedJobs = [];
 
 async function getAppliedJobs() {
-  const response = await fetch(
-    "http://localhost:5000/api/applications/my-applications",
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    },
-  );
-
-  const data = await response.json();
-
-  if (data.success) {
-    async function getAppliedJobs() {
-      const response = await fetch(
-        "http://localhost:5000/api/applications/my-applications",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+  try {
+    const response = await fetch(
+      "http://localhost:5000/api/applications/my-applications",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
         },
-      );
+      },
+    );
 
-      const data = await response.json();
+    const data = await response.json();
 
-      if (data.success) {
-        appliedJobs = data.applications
-          .filter((app) => app.job)
-          .map((app) => app.job._id);
-      }
+    if (data.success) {
+      appliedJobs = data.applications
+        .filter((app) => app.job)
+        .map((app) => app.job._id);
+
+      console.log("Applied Jobs:", appliedJobs);
     }
+  } catch (error) {
+    console.log(error);
   }
 }
 
