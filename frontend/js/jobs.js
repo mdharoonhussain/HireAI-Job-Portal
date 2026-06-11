@@ -12,11 +12,14 @@ async function getJobs() {
   await getAppliedJobs();
 
   try {
-    const response = await fetch("http://localhost:5000/api/jobs", {
-      headers: {
-        Authorization: `Bearer ${token}`,
+    const response = await fetch(
+      "https://hireai-job-portal.onrender.com/api/jobs",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       },
-    });
+    );
 
     console.log("Response:", response);
     const data = await response.json();
@@ -108,7 +111,7 @@ function displayJobs(jobs) {
 async function applyJob(jobId) {
   try {
     const response = await fetch(
-      `http://localhost:5000/api/applications/${jobId}`,
+      `https://hireai-job-portal.onrender.com/api/applications/${jobId}`,
       {
         method: "POST",
 
@@ -137,7 +140,7 @@ let appliedJobs = [];
 async function getAppliedJobs() {
   try {
     const response = await fetch(
-      "http://localhost:5000/api/applications/my-applications",
+      "https://hireai-job-portal.onrender.com/api/applications/my-applications",
       {
         headers: {
           Authorization: `Bearer ${token}`,

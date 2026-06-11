@@ -9,7 +9,7 @@ if (!token) {
 async function getApplications() {
   try {
     const response = await fetch(
-      "http://localhost:5000/api/applications/my-applications",
+      "https://hireai-job-portal.onrender.com/api/applications/my-applications",
       {
         headers: {
           Authorization: `Bearer ${token}`,

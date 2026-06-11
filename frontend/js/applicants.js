@@ -21,7 +21,7 @@ console.log("Stored Job ID:", jobId);
 async function getApplicants() {
   try {
     const response = await fetch(
-      `http://localhost:5000/api/applications/job/${jobId}`,
+      `https://hireai-job-portal.onrender.com/api/applications/job/${jobId}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -103,20 +103,21 @@ function displayApplicants(applications) {
 
         <div class="applicant-actions">
 
-          ${
-            candidate.resumeUrl
-              ? `
-            <a
-              href="http://localhost:5000${candidate.resumeUrl}"
-              target="_blank"
-            >
-              <button class="resume-btn">
-                Resume
-              </button>
-            </a>
-          `
-              : ""
-          }
+${
+  candidate.resumeUrl
+    ? `
+  <a
+    href="${candidate.resumeUrl}"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <button class="resume-btn">
+      Resume
+    </button>
+  </a>
+`
+    : ""
+}
 
           <button
             class="shortlist-btn"
@@ -149,7 +150,7 @@ function displayApplicants(applications) {
 async function updateStatus(applicationId, status) {
   try {
     const response = await fetch(
-      `http://localhost:5000/api/applications/${applicationId}/status`,
+      `https://hireai-job-portal.onrender.com/api/applications/${applicationId}/status`,
       {
         method: "PUT",
 

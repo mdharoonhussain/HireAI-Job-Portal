@@ -9,18 +9,21 @@ registerForm.addEventListener("submit", async (e) => {
   const role = document.getElementById("role").value;
 
   try {
-    const response = await fetch("http://localhost:5000/api/auth/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
+    const response = await fetch(
+      "https://hireai-job-portal.onrender.com/api/auth/register",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          password,
+          role,
+        }),
       },
-      body: JSON.stringify({
-        name,
-        email,
-        password,
-        role,
-      }),
-    });
+    );
 
     const data = await response.json();
 

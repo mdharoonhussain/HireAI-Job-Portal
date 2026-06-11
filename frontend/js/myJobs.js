@@ -33,7 +33,7 @@ cancelDelete.addEventListener("click", () => {
 confirmDelete.addEventListener("click", async () => {
   try {
     const response = await fetch(
-      `http://localhost:5000/api/jobs/${selectedJobId}`,
+      `https://hireai-job-portal.onrender.com/api/jobs/${selectedJobId}`,
       {
         method: "DELETE",
 
@@ -68,7 +68,7 @@ confirmDelete.addEventListener("click", async () => {
 async function getMyJobs() {
   try {
     const response = await fetch(
-      "http://localhost:5000/api/jobs/recruiter/jobs",
+      "https://hireai-job-portal.onrender.com/api/jobs/recruiter/jobs",
       {
         headers: {
           Authorization: `Bearer ${token}`,

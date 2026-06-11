@@ -6,11 +6,14 @@ if (!token) {
 
 async function loadProfile() {
   try {
-    const response = await fetch("http://localhost:5000/api/users/profile", {
-      headers: {
-        Authorization: `Bearer ${token}`,
+    const response = await fetch(
+      "https://hireai-job-portal.onrender.com/api/users/profile",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       },
-    });
+    );
 
     const data = await response.json();
 
@@ -47,29 +50,33 @@ document
 
 async function updateProfile() {
   try {
-    const response = await fetch("http://localhost:5000/api/users/profile", {
-      method: "PUT",
+    const response = await fetch(
+      "https://hireai-job-portal.onrender.com/api/users/profile",
+      {
+        method: "PUT",
 
-      headers: {
-        "Content-Type": "application/json",
+        headers: {
+          "Content-Type": "application/json",
 
-        Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
+        },
+
+        body: JSON.stringify({
+          name: document.getElementById("name").value,
+
+          phone: document.getElementById("phone").value,
+
+          companyName: document.getElementById("companyName").value,
+
+          companyWebsite: document.getElementById("companyWebsite").value,
+
+          companyLocation: document.getElementById("companyLocation").value,
+
+          companyDescription:
+            document.getElementById("companyDescription").value,
+        }),
       },
-
-      body: JSON.stringify({
-        name: document.getElementById("name").value,
-
-        phone: document.getElementById("phone").value,
-
-        companyName: document.getElementById("companyName").value,
-
-        companyWebsite: document.getElementById("companyWebsite").value,
-
-        companyLocation: document.getElementById("companyLocation").value,
-
-        companyDescription: document.getElementById("companyDescription").value,
-      }),
-    });
+    );
 
     const data = await response.json();
 

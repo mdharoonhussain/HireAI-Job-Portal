@@ -8,11 +8,14 @@ if (!token) {
 
 async function loadJob() {
   try {
-    const response = await fetch("http://localhost:5000/api/jobs/my-jobs", {
-      headers: {
-        Authorization: `Bearer ${token}`,
+    const response = await fetch(
+      "https://hireai-job-portal.onrender.com/api/jobs/my-jobs",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       },
-    });
+    );
 
     const data = await response.json();
 
@@ -75,17 +78,20 @@ async function updateJob(e) {
         .filter((skill) => skill !== "");
     }
 
-    const response = await fetch(`http://localhost:5000/api/jobs/${jobId}`, {
-      method: "PUT",
+    const response = await fetch(
+      `https://hireai-job-portal.onrender.com/api/jobs/${jobId}`,
+      {
+        method: "PUT",
 
-      headers: {
-        "Content-Type": "application/json",
+        headers: {
+          "Content-Type": "application/json",
 
-        Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
+        },
+
+        body: JSON.stringify(updateData),
       },
-
-      body: JSON.stringify(updateData),
-    });
+    );
 
     const data = await response.json();
 

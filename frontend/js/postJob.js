@@ -25,24 +25,27 @@ jobForm.addEventListener("submit", async (e) => {
     .map((skill) => skill.trim());
 
   try {
-    const response = await fetch("http://localhost:5000/api/jobs", {
-      method: "POST",
+    const response = await fetch(
+      "https://hireai-job-portal.onrender.com/api/jobs",
+      {
+        method: "POST",
 
-      headers: {
-        "Content-Type": "application/json",
+        headers: {
+          "Content-Type": "application/json",
 
-        Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
+        },
+
+        body: JSON.stringify({
+          title,
+          company,
+          location,
+          salary,
+          description,
+          skills,
+        }),
       },
-
-      body: JSON.stringify({
-        title,
-        company,
-        location,
-        salary,
-        description,
-        skills,
-      }),
-    });
+    );
 
     const data = await response.json();
 

@@ -11,14 +11,18 @@ const imageStorage = new CloudinaryStorage({
   },
 });
 
-const resumeStorage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "uploads/resumes");
-  },
+const resumeStorage = new CloudinaryStorage({
+  cloudinary,
 
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + "-" + file.originalname);
-  },
+  params: async (req, file) => ({
+    folder: "hireai-resumes",
+
+    resource_type: "raw",
+
+    public_id: Date.now() + "-" + path.parse(file.originalname).name,
+
+    format: "pdf",
+  }),
 });
 
 const uploadImage = multer({
