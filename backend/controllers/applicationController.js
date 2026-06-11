@@ -89,13 +89,14 @@ const getMyApplications = async (req, res) => {
     const applications = await Application.find({
       candidate: req.user._id,
     })
-      .populate("job", "title company salary location")
+      .populate("job")
       .sort({ createdAt: -1 });
+
+    const validApplications = applications.filter((app) => app.job);
 
     res.status(200).json({
       success: true,
-      count: applications.length,
-      applications,
+      applications: validApplications,
     });
   } catch (error) {
     console.log(error);

@@ -89,7 +89,7 @@ const uploadResumeFile = async (req, res) => {
   try {
     const user = await User.findById(req.user._id);
 
-    user.resumeUrl = req.file.path;
+    user.resumeUrl = "/uploads/resumes/" + req.file.filename;
 
     await user.save();
 

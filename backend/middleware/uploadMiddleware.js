@@ -1,6 +1,7 @@
 const multer = require("multer");
 const cloudinary = require("../config/cloudinary");
 const { CloudinaryStorage } = require("multer-storage-cloudinary");
+const path = require("path");
 
 const imageStorage = new CloudinaryStorage({
   cloudinary,
@@ -10,11 +11,13 @@ const imageStorage = new CloudinaryStorage({
   },
 });
 
-const resumeStorage = new CloudinaryStorage({
-  cloudinary,
-  params: {
-    folder: "hireai-resumes",
-    resource_type: "raw",
+const resumeStorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "uploads/resumes");
+  },
+
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + "-" + file.originalname);
   },
 });
 

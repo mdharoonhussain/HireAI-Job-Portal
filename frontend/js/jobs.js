@@ -16,7 +16,9 @@ async function getJobs() {
       },
     });
 
+    console.log("Response:", response);
     const data = await response.json();
+    console.log("Data:", data);
 
     if (data.success) {
       displayJobs(data.jobs);
@@ -28,6 +30,7 @@ async function getJobs() {
 
 function displayJobs(jobs) {
   jobsContainer.innerHTML = "";
+  console.log("Jobs received:", jobs);
 
   jobs.forEach((job) => {
     const card = document.createElement("div");
@@ -136,7 +139,24 @@ async function getAppliedJobs() {
   const data = await response.json();
 
   if (data.success) {
-    appliedJobs = data.applications.map((app) => app.job._id);
+    async function getAppliedJobs() {
+      const response = await fetch(
+        "http://localhost:5000/api/applications/my-applications",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+
+      const data = await response.json();
+
+      if (data.success) {
+        appliedJobs = data.applications
+          .filter((app) => app.job)
+          .map((app) => app.job._id);
+      }
+    }
   }
 }
 
