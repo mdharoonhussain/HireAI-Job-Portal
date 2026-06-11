@@ -63,3 +63,5 @@ jobForm.addEventListener("submit", async (e) => {
     showToast("Something went wrong", "error");
   }
 });
+
+initializeLogout();

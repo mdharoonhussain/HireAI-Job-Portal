@@ -29,15 +29,56 @@
       </div>
     </nav>
 
+    <div id="imageModal" class="image-modal">
+      <span id="closeImage">&times;</span>
+
+      <img id="fullImage" class="modal-image" />
+    </div>
+
+    <div class="jobs-page">
+      <div class="filters-sidebar">
+        <h3>Filters</h3>
+
+        <input type="text" id="searchInput" placeholder="Search jobs..." />
+
+        <select id="locationFilter">
+          <option value="">All Locations</option>
+        </select>
+
+        <select id="skillFilter">
+          <option value="">All Skills</option>
+          <option value="JavaScript">JavaScript</option>
+          <option value="React">React</option>
+          <option value="Node.js">Node.js</option>
+          <option value="Python">Python</option>
+          <option value="MongoDB">MongoDB</option>
+        </select>
+
+        <select id="salaryFilter">
+          <option value="">All Salaries</option>
+          <option value="0-5">0-5 LPA</option>
+          <option value="5-10">5-10 LPA</option>
+          <option value="10-20">10-20 LPA</option>
+          <option value="20+">20+ LPA</option>
+        </select>
+      </div>
+
+      <div class="jobs-content">
+        <h1>Available Jobs</h1>
+
+        <div id="jobsContainer" class="jobs-grid"></div>
+      </div>
+    </div>
+
     <!-- Main Content -->
 
-    <div class="jobs-container">
+    <!-- <div class="jobs-container">
       <h1>Available Jobs</h1>
 
       <div id="jobsContainer" class="jobs-grid">
         <!-- Jobs will come from JS -->
       </div>
-    </div>
+    </div> -->
 
     <!-- Toast -->
 

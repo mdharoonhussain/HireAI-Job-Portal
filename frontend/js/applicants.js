@@ -16,6 +16,8 @@ if (!jobId) {
   }, 1500);
 }
 
+console.log("Stored Job ID:", jobId);
+
 async function getApplicants() {
   try {
     const response = await fetch(
@@ -208,3 +210,4 @@ confirmLogout.addEventListener("click", () => {
 });
 
 getApplicants();
+initializeLogout();

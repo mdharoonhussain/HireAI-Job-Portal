@@ -236,3 +236,193 @@
 
   font-weight:600;
 }
+
+.search-box {
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+#searchInput {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.filters {
+  max-width: 300px;
+  margin: 15px auto;
+}
+
+#locationFilter {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.filters-container {
+  display: flex;
+  gap: 15px;
+  margin: 20px auto;
+  max-width: 1200px;
+  flex-wrap: wrap;
+}
+
+.filters-container input,
+.filters-container select {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  min-width: 220px;
+}
+
+
+.jobs-page {
+  display: flex;
+  gap: 30px;
+  max-width: 1400px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+.filters-sidebar {
+  width: 280px;
+  flex-shrink: 0;
+
+  background: white;
+  padding: 20px;
+
+  border-radius: 12px;
+
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+
+  height: fit-content;
+
+  position: sticky;
+  top: 90px;
+}
+
+.filters-sidebar h3 {
+  margin-bottom: 20px;
+}
+
+.filters-sidebar input,
+.filters-sidebar select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.jobs-content {
+  flex: 1;
+}
+
+.jobs-content h1 {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.jobs-grid {
+  display: grid;
+
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+
+  gap: 20px;
+}
+
+/* =========================
+   Tablet View
+========================= */
+
+@media (max-width: 992px) {
+  .jobs-page {
+    flex-direction: column;
+  }
+
+  .filters-sidebar {
+    width: 100%;
+    position: static;
+  }
+
+  .jobs-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* =========================
+   Mobile View
+========================= */
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px;
+  }
+
+  .jobs-page {
+    padding: 0 15px;
+  }
+
+  .filters-sidebar {
+    padding: 15px;
+  }
+
+  .jobs-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .job-card {
+    padding: 15px;
+  }
+
+  .jobs-content h1 {
+    font-size: 28px;
+  }
+}
+
+/* =========================
+   Small Mobile View
+========================= */
+
+@media (max-width: 480px) {
+  .filters-sidebar input,
+  .filters-sidebar select {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .jobs-content h1 {
+    font-size: 24px;
+  }
+
+  .job-card h3 {
+    font-size: 20px;
+  }
+
+  .skill {
+    font-size: 12px;
+    padding: 4px 10px;
+  }
+
+  .apply-btn,
+  .applied-btn {
+    width: 100%;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.filters-sidebar input,
+.filters-sidebar select {
+  box-sizing: border-box;
+}

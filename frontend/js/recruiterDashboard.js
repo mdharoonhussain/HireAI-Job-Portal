@@ -39,6 +39,35 @@ cancelLogout.addEventListener("click", () => {
   logoutModal.classList.remove("show");
 });
 
+async function getRecruiterStats() {
+  try {
+    const response = await fetch(
+      "http://localhost:5000/api/applications/recruiter/stats",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      },
+    );
+
+    const data = await response.json();
+
+    if (data.success) {
+      document.getElementById("totalJobs").textContent = data.stats.totalJobs;
+
+      document.getElementById("totalApplications").textContent =
+        data.stats.totalApplications;
+
+      document.getElementById("totalShortlisted").textContent =
+        data.stats.shortlisted;
+
+      document.getElementById("totalHired").textContent = data.stats.hired;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 confirmLogout.addEventListener("click", () => {
   showToast("Logged out successfully", "success");
 
@@ -49,12 +78,6 @@ confirmLogout.addEventListener("click", () => {
   }, 1500);
 });
 
+initializeLogout();
 loadProfile();
-
-document.getElementById("totalJobs").textContent = 5;
-
-document.getElementById("totalApplications").textContent = 12;
-
-document.getElementById("totalShortlisted").textContent = 4;
-
-document.getElementById("totalHired").textContent = 1;
+getRecruiterStats();

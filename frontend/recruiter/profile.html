@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Recruiter Profile</title>
+
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/dashboard.css" />
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <h2 class="logo">HireAI</h2>
+
+      <div class="nav-right">
+        <a href="dashboard.html" class="dashboard-link"> Dashboard </a>
+
+        <button id="logoutBtn">Logout</button>
+      </div>
+    </nav>
+
+    <div class="dashboard-container">
+      <h1>Recruiter Profile</h1>
+
+      <div class="profile-card">
+        <div class="form-group">
+          <label>Recruiter Name</label>
+
+          <input type="text" id="name" />
+        </div>
+
+        <div class="form-group">
+          <label>Email</label>
+
+          <input type="email" id="email" disabled />
+        </div>
+
+        <div class="form-group">
+          <label>Phone</label>
+
+          <input type="text" id="phone" />
+        </div>
+
+        <div class="form-group">
+          <label>Company Name</label>
+
+          <input type="text" id="companyName" />
+        </div>
+
+        <div class="form-group">
+          <label>Company Website</label>
+
+          <input type="text" id="companyWebsite" />
+        </div>
+
+        <div class="form-group">
+          <label>Company Location</label>
+
+          <input type="text" id="companyLocation" />
+        </div>
+
+        <div class="form-group">
+          <label>Company Description</label>
+
+          <textarea id="companyDescription" rows="5"></textarea>
+        </div>
+
+        <button id="saveProfileBtn">Save Profile</button>
+      </div>
+    </div>
+
+    <!-- Logout Modal -->
+
+    <div id="logoutModal" class="modal">
+      <div class="modal-content">
+        <h2>Logout</h2>
+
+        <p>Are you sure you want to logout?</p>
+
+        <div class="modal-buttons">
+          <button id="cancelLogout" class="cancel-btn">Cancel</button>
+
+          <button id="confirmLogout" class="confirm-btn">Logout</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <script src="../js/utils.js"></script>
+
+    <script src="../js/profile.js"></script>
+  </body>
+</html>

@@ -18,6 +18,7 @@ const getProfile = async (req, res) => {
 // Update Profile
 const updateProfile = async (req, res) => {
   try {
+    console.log("BODY:", req.body);
     const user = await User.findById(req.user._id);
 
     if (!user) {
@@ -33,10 +34,16 @@ const updateProfile = async (req, res) => {
     user.experience = req.body.experience || user.experience;
     user.location = req.body.location || user.location;
     user.skills = req.body.skills || user.skills;
+    user.companyName = req.body.companyName || user.companyName;
+
+    user.companyWebsite = req.body.companyWebsite || user.companyWebsite;
+
+    user.companyDescription =
+      req.body.companyDescription || user.companyDescription;
+
+    user.companyLocation = req.body.companyLocation || user.companyLocation;
 
     const updatedUser = await user.save();
-
-    await user.save();
 
     const safeUser = await User.findById(user._id).select("-password");
 

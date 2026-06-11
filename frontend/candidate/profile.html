@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Profile</title>
+
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/dashboard.css" />
+    <link rel="stylesheet" href="../css/profile.css" />
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <h2 class="logo">HireAI</h2>
+
+      <div class="nav-right">
+        <a href="dashboard.html">Dashboard</a>
+        <button id="logoutBtn">Logout</button>
+      </div>
+    </nav>
+
+    <div class="profile-container">
+      <h1>My Profile</h1>
+
+      <div class="profile-card">
+        <div class="photo-section">
+          <label><strong>Profile Photo</strong></label>
+
+          <div class="profile-photo-section">
+            <img
+              id="profileImage"
+              src="https://ui-avatars.com/api/?name=User"
+              alt="Profile"
+              class="profile-image"
+            />
+          </div>
+
+          <input type="file" id="profilePhotoInput" />
+        </div>
+
+        <form id="profileForm">
+          <input type="text" id="name" placeholder="Full Name" />
+
+          <input type="email" id="email" disabled />
+
+          <input type="text" id="phone" placeholder="Phone" />
+
+          <input type="text" id="location" placeholder="Location" />
+
+          <input type="text" id="education" placeholder="Education" />
+
+          <input type="text" id="experience" placeholder="Experience" />
+
+          <input
+            type="text"
+            id="skills"
+            placeholder="Skills (comma separated)"
+          />
+
+          <div class="resume-section">
+            <label><strong>Upload Resume</strong></label>
+
+            <br /><br />
+
+            <input type="file" id="resumeInput" />
+
+            <br /><br />
+
+            <a id="viewResumeBtn" target="_blank"> View Resume </a>
+          </div>
+
+          <br />
+
+          <button type="submit">Save Profile</button>
+        </form>
+      </div>
+    </div>
+
+    <div id="imageModal" class="image-modal">
+      <span id="closeImage">&times;</span>
+
+      <img id="fullImage" class="modal-image" />
+    </div>
+
+    <!-- Logout Modal -->
+
+    <div id="logoutModal" class="modal">
+      <div class="modal-content">
+        <h2>Logout</h2>
+
+        <p>Are you sure you want to logout?</p>
+
+        <div class="modal-buttons">
+          <button id="cancelLogout" class="cancel-btn">Cancel</button>
+
+          <button id="confirmLogout" class="confirm-btn">Logout</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <script src="../js/utils.js"></script>
+    <script src="../js/candidateProfile.js"></script>
+  </body>
+</html>

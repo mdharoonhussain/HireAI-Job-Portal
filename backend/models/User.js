@@ -57,6 +57,21 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+    companyName: {
+      type: String,
+    },
+
+    companyWebsite: {
+      type: String,
+    },
+
+    companyDescription: {
+      type: String,
+    },
+
+    companyLocation: {
+      type: String,
+    },
   },
   {
     timestamps: true,

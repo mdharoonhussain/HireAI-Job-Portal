@@ -2,6 +2,8 @@ const jobsContainer = document.getElementById("jobsContainer");
 
 const token = localStorage.getItem("token");
 
+let allJobs = [];
+
 if (!token) {
   window.location.href = "../login.html";
 }
@@ -21,7 +23,11 @@ async function getJobs() {
     console.log("Data:", data);
 
     if (data.success) {
-      displayJobs(data.jobs);
+      allJobs = data.jobs;
+
+      loadLocationFilter();
+
+      displayJobs(allJobs);
     }
   } catch (error) {
     console.log(error);
@@ -178,5 +184,78 @@ confirmLogout.addEventListener("click", () => {
     window.location.href = "../login.html";
   }, 1500);
 });
+
+const searchInput = document.getElementById("searchInput");
+
+const locationFilter = document.getElementById("locationFilter");
+
+const skillFilter = document.getElementById("skillFilter");
+
+const salaryFilter = document.getElementById("salaryFilter");
+
+function loadLocationFilter() {
+  const locations = [...new Set(allJobs.map((job) => job.location))];
+
+  locations.forEach((location) => {
+    const option = document.createElement("option");
+
+    option.value = location;
+
+    option.textContent = location;
+
+    locationFilter.appendChild(option);
+  });
+}
+
+function filterJobs() {
+  const searchTerm = searchInput.value.toLowerCase();
+
+  const selectedLocation = locationFilter.value.toLowerCase();
+
+  const selectedSkill = skillFilter.value.toLowerCase();
+
+  const selectedSalary = salaryFilter.value;
+
+  const filteredJobs = allJobs.filter((job) => {
+    const matchesSearch =
+      job.title.toLowerCase().includes(searchTerm) ||
+      job.company.toLowerCase().includes(searchTerm) ||
+      job.location.toLowerCase().includes(searchTerm) ||
+      job.skills.join(" ").toLowerCase().includes(searchTerm);
+
+    const matchesLocation =
+      !selectedLocation || job.location.toLowerCase() === selectedLocation;
+
+    const matchesSkill =
+      !selectedSkill ||
+      job.skills.join(" ").toLowerCase().includes(selectedSkill);
+
+    let matchesSalary = true;
+
+    const salaryNumber = parseInt(job.salary);
+
+    if (selectedSalary === "0-5") {
+      matchesSalary = salaryNumber <= 5;
+    } else if (selectedSalary === "5-10") {
+      matchesSalary = salaryNumber > 5 && salaryNumber <= 10;
+    } else if (selectedSalary === "10-20") {
+      matchesSalary = salaryNumber > 10 && salaryNumber <= 20;
+    } else if (selectedSalary === "20+") {
+      matchesSalary = salaryNumber > 20;
+    }
+
+    return matchesSearch && matchesLocation && matchesSkill && matchesSalary;
+  });
+
+  displayJobs(filteredJobs);
+}
+
+searchInput.addEventListener("input", filterJobs);
+
+locationFilter.addEventListener("change", filterJobs);
+
+skillFilter.addEventListener("change", filterJobs);
+
+salaryFilter.addEventListener("change", filterJobs);
 
 getJobs();

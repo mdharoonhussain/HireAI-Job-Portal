@@ -5,7 +5,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Post Job</title>
+    <title>Edit Job</title>
 
     <link
       rel="stylesheet"
@@ -28,37 +28,27 @@
     </nav>
 
     <div class="dashboard-container">
-      <h1>Post New Job</h1>
+      <h1>Edit Job</h1>
 
       <div class="form-card">
         <form id="jobForm">
-          <input type="text" id="title" placeholder="Job Title" required />
+          <input type="text" id="title" placeholder="Job Title" />
 
-          <input type="text" id="company" placeholder="Company Name" required />
+          <input type="text" id="company" placeholder="Company Name" />
 
-          <input type="text" id="location" placeholder="Location" required />
+          <input type="text" id="location" placeholder="Location" />
 
-          <input
-            type="text"
-            id="salary"
-            placeholder="Salary (Ex: 8-12 LPA)"
-            required
-          />
+          <input type="text" id="salary" placeholder="Salary (Ex: 8-12 LPA)" />
 
-          <textarea
-            id="description"
-            placeholder="Job Description"
-            required
-          ></textarea>
+          <textarea id="description" placeholder="Job Description"></textarea>
 
           <input
             type="text"
             id="skills"
             placeholder="Skills (HTML,CSS,JavaScript)"
-            required
           />
 
-          <button type="submit">Post Job</button>
+          <button type="submit">Update Job</button>
         </form>
       </div>
     </div>
@@ -82,6 +72,6 @@
     <div id="toast" class="toast"></div>
 
     <script src="../js/utils.js"></script>
-    <script src="../js/postJob.js"></script>
+    <script src="../js/editJob.js"></script>
   </body>
 </html>

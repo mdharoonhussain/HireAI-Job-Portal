@@ -241,9 +241,60 @@ HireAI Team
   }
 };
 
+const getRecruiterStats = async (req, res) => {
+  try {
+    if (req.user.role !== "recruiter") {
+      return res.status(403).json({
+        success: false,
+        message: "Only recruiters can access stats",
+      });
+    }
+
+    const jobs = await Job.find({
+      recruiter: req.user._id,
+    });
+
+    const jobIds = jobs.map((job) => job._id);
+
+    const totalJobs = jobs.length;
+
+    const totalApplications = await Application.countDocuments({
+      job: { $in: jobIds },
+    });
+
+    const shortlisted = await Application.countDocuments({
+      job: { $in: jobIds },
+      status: "shortlisted",
+    });
+
+    const hired = await Application.countDocuments({
+      job: { $in: jobIds },
+      status: "hired",
+    });
+
+    res.status(200).json({
+      success: true,
+      stats: {
+        totalJobs,
+        totalApplications,
+        shortlisted,
+        hired,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+
+    res.status(500).json({
+      success: false,
+      message: "Server Error",
+    });
+  }
+};
+
 module.exports = {
   applyForJob,
   getMyApplications,
   getApplicantsForJob,
   updateApplicationStatus,
+  getRecruiterStats,
 };

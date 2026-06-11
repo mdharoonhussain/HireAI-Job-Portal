@@ -170,13 +170,19 @@ function displayJobs(jobs) {
 /* Edit Job */
 
 function editJob(jobId) {
-  showToast("Edit Job page coming next", "success");
+  localStorage.setItem("editJobId", jobId);
+
+  window.location.href = "edit-job.html";
 }
 
 /* View Applicants */
 
 function viewApplicants(jobId) {
+  console.log("Clicked Job ID:", jobId);
+
   localStorage.setItem("jobId", jobId);
+
+  console.log("Stored Job ID:", localStorage.getItem("jobId"));
 
   window.location.href = "applicants.html";
 }
@@ -212,3 +218,4 @@ confirmLogout.addEventListener("click", () => {
 /* Initial Load */
 
 getMyJobs();
+initializeLogout();
