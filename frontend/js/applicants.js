@@ -149,6 +149,8 @@ ${
 
 async function updateStatus(applicationId, status) {
   try {
+    console.log("Application ID:", applicationId);
+    console.log("Status:", status);
     const response = await fetch(
       `https://hireai-job-portal.onrender.com/api/applications/${applicationId}/status`,
       {

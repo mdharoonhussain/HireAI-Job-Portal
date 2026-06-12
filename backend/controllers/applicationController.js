@@ -152,6 +152,7 @@ const getApplicantsForJob = async (req, res) => {
 
 const updateApplicationStatus = async (req, res) => {
   try {
+    console.log("UPDATE STATUS API HIT");
     const { applicationId } = req.params;
     const { status } = req.body;
 
