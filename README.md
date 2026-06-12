@@ -181,6 +181,6 @@ Open the frontend folder using VS Code Live Server or any local server.
 
 Full Stack Web Developer
 
-LinkedIn: Add Your LinkedIn Profile
+LinkedIn: linkedin.com/in/md-haroon-hussain-b730561b3
 
-GitHub: Add Your GitHub Profile
+GitHub: https://github.com/mdharoonhussain
