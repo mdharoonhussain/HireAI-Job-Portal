@@ -135,10 +135,12 @@ const getApplicantsForJob = async (req, res) => {
       )
       .sort({ createdAt: -1 });
 
+    const validApplications = applications.filter((app) => app.candidate);
+
     res.status(200).json({
       success: true,
-      count: applications.length,
-      applications,
+      count: validApplications.length,
+      applications: validApplications,
     });
   } catch (error) {
     console.log(error);

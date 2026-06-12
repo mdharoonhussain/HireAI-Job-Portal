@@ -46,18 +46,21 @@ async function getApplicants() {
 function displayApplicants(applications) {
   applicantsContainer.innerHTML = "";
 
-  if (applications.length === 0) {
+  // Remove broken applications where candidate is null
+  const validApplications = applications.filter(
+    (application) => application.candidate,
+  );
+
+  if (validApplications.length === 0) {
     applicantsContainer.innerHTML = `
       <div class="applicant-card">
-        <h3>
-          No Applicants Yet
-        </h3>
+        <h3>No Applicants Yet</h3>
       </div>
     `;
     return;
   }
 
-  applications.forEach((application) => {
+  validApplications.forEach((application) => {
     const candidate = application.candidate;
 
     const card = document.createElement("div");
@@ -65,83 +68,81 @@ function displayApplicants(applications) {
     card.classList.add("applicant-card");
 
     card.innerHTML = `
-        <h3>
-          ${candidate.name}
-        </h3>
+      <h3>${candidate.name}</h3>
 
-        <p>
-          <strong>Email:</strong>
-          ${candidate.email}
-        </p>
+      <p>
+        <strong>Email:</strong>
+        ${candidate.email}
+      </p>
 
-        <p>
-          <strong>Location:</strong>
-          ${candidate.location || "N/A"}
-        </p>
+      <p>
+        <strong>Location:</strong>
+        ${candidate.location || "N/A"}
+      </p>
 
-        <p>
-          <strong>Experience:</strong>
-          ${candidate.experience || "N/A"}
-        </p>
+      <p>
+        <strong>Experience:</strong>
+        ${candidate.experience || "N/A"}
+      </p>
 
-        <p>
-          <strong>Education:</strong>
-          ${candidate.education || "N/A"}
-        </p>
+      <p>
+        <strong>Education:</strong>
+        ${candidate.education || "N/A"}
+      </p>
 
-        <p>
-          <strong>Skills:</strong>
-          ${candidate.skills?.join(", ") || "N/A"}
-        </p>
+      <p>
+        <strong>Skills:</strong>
+        ${candidate.skills?.join(", ") || "N/A"}
+      </p>
 
-        <p>
-          <strong>Status:</strong>
-          <span class="status ${application.status}">
-            ${application.status}
-          </span>
-        </p>
+      <p>
+        <strong>Status:</strong>
+        <span class="status ${application.status}">
+          ${application.status}
+        </span>
+      </p>
 
-        <div class="applicant-actions">
+      <div class="applicant-actions">
 
-${
-  candidate.resumeUrl
-    ? `
-  <a
-    href="${candidate.resumeUrl}"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    <button class="resume-btn">
-      Resume
-    </button>
-  </a>
-`
-    : ""
-}
-
-          <button
-            class="shortlist-btn"
-            onclick="updateStatus('${application._id}','shortlisted')"
+        ${
+          candidate.resumeUrl
+            ? `
+          <a
+            href="${candidate.resumeUrl}"
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            Shortlist
-          </button>
+            <button class="resume-btn">
+              Resume
+            </button>
+          </a>
+        `
+            : ""
+        }
 
-          <button
-            class="reject-btn"
-            onclick="updateStatus('${application._id}','rejected')"
-          >
-            Reject
-          </button>
+        <button
+          class="shortlist-btn"
+          onclick="updateStatus('${application._id}','shortlisted')"
+        >
+          Shortlist
+        </button>
 
-          <button
-            class="hire-btn"
-            onclick="updateStatus('${application._id}','hired')"
-          >
-            Hire
-          </button>
+        <button
+          class="reject-btn"
+          onclick="updateStatus('${application._id}','rejected')"
+        >
+          Reject
+        </button>
 
-        </div>
-      `;
+        <button
+          class="hire-btn"
+          onclick="updateStatus('${application._id}','hired')"
+        >
+          Hire
+        </button>
+
+      </div>
+    `;
 
     applicantsContainer.appendChild(card);
   });
