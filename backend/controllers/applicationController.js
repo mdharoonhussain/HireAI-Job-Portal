@@ -55,25 +55,25 @@ const applyForJob = async (req, res) => {
       application,
     });
 
-    sendEmail({
-      email: job.recruiter.email,
-      subject: "New Job Application Received",
-      message: `
-    Hello ${job.recruiter.name},
+    // sendEmail({
+    //   email: job.recruiter.email,
+    //   subject: "New Job Application Received",
+    //   message: `
+    // Hello ${job.recruiter.name},
 
-    A new candidate has applied for your job.
+    // A new candidate has applied for your job.
 
-    Job Title: ${job.title}
+    // Job Title: ${job.title}
 
-    Candidate Name: ${req.user.name}
-    Candidate Email: ${req.user.email}
+    // Candidate Name: ${req.user.name}
+    // Candidate Email: ${req.user.email}
 
-    Please login to HireAI Job Portal to review the application.
+    // Please login to HireAI Job Portal to review the application.
 
-    Regards,
-    HireAI Team
-    `,
-    });
+    // Regards,
+    // HireAI Team
+    // `,
+    // });
   } catch (error) {
     console.log(error);
 
