@@ -38,17 +38,25 @@ async function getJobs() {
 }
 
 function displayJobs(jobs) {
+  console.log("displayJobs called");
   jobsContainer.innerHTML = "";
-  console.log("Applied Jobs Array:", appliedJobs);
+  // console.log("Applied Jobs Array:", appliedJobs);
 
   jobs.forEach((job) => {
-    console.log("Current Job:", job._id);
-    console.log("Already Applied:", appliedJobs.includes(job._id.toString()));
+    const alreadyApplied = appliedJobs.includes(job._id);
+
+    // console.log({
+    //   jobId: job._id,
+    //   appliedJobs,
+    //   alreadyApplied,
+    // });
     const card = document.createElement("div");
 
     card.classList.add("job-card");
 
-    const alreadyApplied = appliedJobs.includes(job._id.toString());
+    // const alreadyApplied = appliedJobs.some(
+    //   (id) => id.toString() === job._id.toString(),
+    // );
 
     card.innerHTML = `
       <h3>${job.title}</h3>
@@ -92,12 +100,13 @@ function displayJobs(jobs) {
             </button>
             `
             : `
-            <button
-              class="apply-btn"
-              onclick="applyJob('${job._id}')"
-            >
-              Apply Now
-            </button>
+           <button
+  id="apply-${job._id}"
+  class="apply-btn"
+  onclick="applyJob('${job._id}')"
+>
+  Apply Now
+</button>
             `
         }
 
@@ -109,12 +118,12 @@ function displayJobs(jobs) {
 }
 
 async function applyJob(jobId) {
+  console.log("APPLY CLICKED", jobId);
   try {
     const response = await fetch(
       `https://hireai-job-portal.onrender.com/api/applications/${jobId}`,
       {
         method: "POST",
-
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -124,13 +133,38 @@ async function applyJob(jobId) {
     const data = await response.json();
 
     if (data.success) {
+      console.log("SUCCESS RESPONSE");
+
       showToast("Application submitted successfully", "success");
+
+      appliedJobs.push(jobId);
+
+      console.log("Before finding button");
+
+      const btn = document.getElementById(`apply-${jobId}`);
+
+      console.log("Button found:", btn);
+
+      if (btn) {
+        console.log("Replacing button now");
+
+        btn.outerHTML = `
+      <button
+        class="applied-btn"
+        disabled
+        style="background:red;color:white;"
+      >
+        Applied
+      </button>
+    `;
+
+        console.log("Button replaced");
+      }
     } else {
       showToast(data.message, "error");
     }
   } catch (error) {
     console.log(error);
-
     showToast("Something went wrong", "error");
   }
 }
@@ -197,15 +231,14 @@ const skillFilter = document.getElementById("skillFilter");
 const salaryFilter = document.getElementById("salaryFilter");
 
 function loadLocationFilter() {
+  locationFilter.innerHTML = '<option value="">All Locations</option>';
+
   const locations = [...new Set(allJobs.map((job) => job.location))];
 
   locations.forEach((location) => {
     const option = document.createElement("option");
-
     option.value = location;
-
     option.textContent = location;
-
     locationFilter.appendChild(option);
   });
 }

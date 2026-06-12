@@ -49,30 +49,30 @@ const applyForJob = async (req, res) => {
     console.log("Candidate Name:", req.user.name);
     console.log("Candidate Email:", req.user.email);
 
-    await sendEmail({
-      email: job.recruiter.email,
-      subject: "New Job Application Received",
-      message: `
-Hello ${job.recruiter.name},
-
-A new candidate has applied for your job.
-
-Job Title: ${job.title}
-
-Candidate Name: ${req.user.name}
-Candidate Email: ${req.user.email}
-
-Please login to HireAI Job Portal to review the application.
-
-Regards,
-HireAI Team
-`,
-    });
-
     res.status(201).json({
       success: true,
       message: "Application submitted successfully",
       application,
+    });
+
+    sendEmail({
+      email: job.recruiter.email,
+      subject: "New Job Application Received",
+      message: `
+    Hello ${job.recruiter.name},
+
+    A new candidate has applied for your job.
+
+    Job Title: ${job.title}
+
+    Candidate Name: ${req.user.name}
+    Candidate Email: ${req.user.email}
+
+    Please login to HireAI Job Portal to review the application.
+
+    Regards,
+    HireAI Team
+    `,
     });
   } catch (error) {
     console.log(error);
