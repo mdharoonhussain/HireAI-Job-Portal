@@ -119,6 +119,7 @@ function displayJobs(jobs) {
 
 async function applyJob(jobId) {
   console.log("APPLY CLICKED", jobId);
+
   try {
     const response = await fetch(
       `https://hireai-job-portal.onrender.com/api/applications/${jobId}`,
@@ -130,42 +131,28 @@ async function applyJob(jobId) {
       },
     );
 
+    console.log("FETCH FINISHED");
+
     const data = await response.json();
 
+    console.log("DATA RECEIVED", data);
+
     if (data.success) {
-      console.log("SUCCESS RESPONSE");
-
-      showToast("Application submitted successfully", "success");
-
-      appliedJobs.push(jobId);
-
-      console.log("Before finding button");
+      console.log("SUCCESS BLOCK ENTERED");
 
       const btn = document.getElementById(`apply-${jobId}`);
 
-      console.log("Button found:", btn);
+      console.log("BUTTON FOUND", btn);
 
       if (btn) {
-        console.log("Replacing button now");
-
-        btn.outerHTML = `
-      <button
-        class="applied-btn"
-        disabled
-        style="background:red;color:white;"
-      >
-        Applied
-      </button>
-    `;
-
-        console.log("Button replaced");
+        btn.textContent = "Applied";
+        btn.disabled = true;
+        btn.style.background = "red";
       }
-    } else {
-      showToast(data.message, "error");
     }
   } catch (error) {
+    console.log("ERROR OCCURRED");
     console.log(error);
-    showToast("Something went wrong", "error");
   }
 }
 
