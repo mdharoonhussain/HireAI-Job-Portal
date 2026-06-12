@@ -44,12 +44,9 @@ const applyForJob = async (req, res) => {
       job: jobId,
     });
 
-    console.log("Recruiter:", job.recruiter);
-    console.log("Recruiter Email:", job.recruiter.email);
-    console.log("Candidate Name:", req.user.name);
-    console.log("Candidate Email:", req.user.email);
+    console.log("RESPONSE SENT IMMEDIATELY");
 
-    res.status(201).json({
+    return res.status(201).json({
       success: true,
       message: "Application submitted successfully",
       application,
