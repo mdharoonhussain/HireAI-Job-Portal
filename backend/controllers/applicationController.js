@@ -44,13 +44,17 @@ const applyForJob = async (req, res) => {
       job: jobId,
     });
 
-    console.log("RESPONSE SENT IMMEDIATELY");
+    console.log("STEP 1 - APPLICATION CREATED");
+
+    console.log("STEP 2 - SENDING RESPONSE");
 
     return res.status(201).json({
       success: true,
       message: "Application submitted successfully",
       application,
     });
+
+    console.log("STEP 3 - SHOULD NEVER RUN");
 
     // sendEmail({
     //   email: job.recruiter.email,
