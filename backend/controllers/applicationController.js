@@ -169,6 +169,11 @@ const updateApplicationStatus = async (req, res) => {
     const application = await Application.findById(applicationId)
       .populate("job")
       .populate("candidate", "name email");
+    console.log("Application Found:", application);
+
+    console.log("Job Found:", application?.job);
+
+    console.log("Candidate Found:", application?.candidate);
 
     if (!application) {
       return res.status(404).json({
@@ -197,6 +202,7 @@ const updateApplicationStatus = async (req, res) => {
     application.status = status;
 
     await application.save();
+    console.log("SAVED STATUS:", application.status);
 
     res.status(200).json({
       success: true,
@@ -204,6 +210,7 @@ const updateApplicationStatus = async (req, res) => {
       application,
     });
   } catch (error) {
+    console.log("UPDATE STATUS ERROR:");
     console.log(error);
 
     res.status(500).json({

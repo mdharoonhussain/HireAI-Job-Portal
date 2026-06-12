@@ -32,6 +32,10 @@ async function getApplicants() {
     const data = await response.json();
 
     if (data.success) {
+      console.log(
+        "APPLICATIONS RECEIVED:",
+        JSON.stringify(data.applications, null, 2),
+      );
       displayApplicants(data.applications);
     } else {
       showToast(data.message, "error");
@@ -174,7 +178,7 @@ async function updateStatus(applicationId, status) {
     if (data.success) {
       showToast(`Candidate ${status}`, "success");
 
-      getApplicants();
+      await getApplicants();
     } else {
       showToast(data.message, "error");
     }

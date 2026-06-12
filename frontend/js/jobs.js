@@ -138,17 +138,11 @@ async function applyJob(jobId) {
     console.log("DATA RECEIVED", data);
 
     if (data.success) {
-      console.log("SUCCESS BLOCK ENTERED");
+      showToast("Application submitted successfully", "success");
 
-      const btn = document.getElementById(`apply-${jobId}`);
+      await getAppliedJobs();
 
-      console.log("BUTTON FOUND", btn);
-
-      if (btn) {
-        btn.textContent = "Applied";
-        btn.disabled = true;
-        btn.style.background = "red";
-      }
+      displayJobs(allJobs);
     }
   } catch (error) {
     console.log("ERROR OCCURRED");
