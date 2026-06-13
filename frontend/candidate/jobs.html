@@ -1,105 +1,104 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+  <meta charset="UTF-8" />
 
-    <title>Available Jobs</title>
-    <link rel="icon" type="image/png" href="../images/logo.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    />
+  <title>Available Jobs</title>
+  <link rel="icon" type="image/png" href="../images/logo.png" />
 
-    <link rel="stylesheet" href="../css/style.css" />
-    <link rel="stylesheet" href="../css/jobs.css" />
-  </head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
-  <body>
-    <!-- Navbar -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/jobs.css" />
+</head>
 
-    <nav class="navbar">
-      <h2 class="logo">HireAI</h2>
+<body>
+  <!-- Navbar -->
 
-      <div>
-        <a href="dashboard.html" class="nav-link"> Dashboard </a>
+  <nav class="navbar">
+    <h2 class="logo">HireAI</h2>
 
-        <button id="logoutBtn">Logout</button>
-      </div>
-    </nav>
+    <div>
+      <a href="dashboard.html" class="nav-link"> Dashboard </a>
 
-    <div id="imageModal" class="image-modal">
-      <span id="closeImage">&times;</span>
+      <button id="logoutBtn">Logout</button>
+    </div>
+  </nav>
 
-      <img id="fullImage" class="modal-image" />
+  <div id="imageModal" class="image-modal">
+    <!-- <span id="closeImage">&times;</span> -->
+
+    <img id="fullImage" class="modal-image" />
+  </div>
+
+  <div class="jobs-page">
+    <div class="filters-sidebar">
+      <h3>Filters</h3>
+
+      <input type="text" id="searchInput" placeholder="Search jobs..." />
+
+      <select id="locationFilter">
+        <option value="">All Locations</option>
+      </select>
+
+      <select id="skillFilter">
+        <option value="">All Skills</option>
+        <option value="JavaScript">JavaScript</option>
+        <option value="React">React</option>
+        <option value="Node.js">Node.js</option>
+        <option value="Python">Python</option>
+        <option value="MongoDB">MongoDB</option>
+      </select>
+
+      <select id="salaryFilter">
+        <option value="">All Salaries</option>
+        <option value="0-5">0-5 LPA</option>
+        <option value="5-10">5-10 LPA</option>
+        <option value="10-20">10-20 LPA</option>
+        <option value="20+">20+ LPA</option>
+      </select>
     </div>
 
-    <div class="jobs-page">
-      <div class="filters-sidebar">
-        <h3>Filters</h3>
+    <div class="jobs-content">
+      <h1>Available Jobs</h1>
 
-        <input type="text" id="searchInput" placeholder="Search jobs..." />
-
-        <select id="locationFilter">
-          <option value="">All Locations</option>
-        </select>
-
-        <select id="skillFilter">
-          <option value="">All Skills</option>
-          <option value="JavaScript">JavaScript</option>
-          <option value="React">React</option>
-          <option value="Node.js">Node.js</option>
-          <option value="Python">Python</option>
-          <option value="MongoDB">MongoDB</option>
-        </select>
-
-        <select id="salaryFilter">
-          <option value="">All Salaries</option>
-          <option value="0-5">0-5 LPA</option>
-          <option value="5-10">5-10 LPA</option>
-          <option value="10-20">10-20 LPA</option>
-          <option value="20+">20+ LPA</option>
-        </select>
-      </div>
-
-      <div class="jobs-content">
-        <h1>Available Jobs</h1>
-
-        <div id="jobsContainer" class="jobs-grid"></div>
-      </div>
+      <div id="jobsContainer" class="jobs-grid"></div>
     </div>
+  </div>
 
-    <!-- Main Content -->
+  <!-- Main Content -->
 
-    <!-- <div class="jobs-container">
+  <!-- <div class="jobs-container">
       <h1>Available Jobs</h1>
 
       <div id="jobsContainer" class="jobs-grid">
         <!-- Jobs will come from JS -->
+  </div>
+  </div>
+
+  <!-- Toast -->
+
+  <div id="toast" class="toast"></div>
+
+  <div id="logoutModal" class="modal">
+    <div class="modal-content">
+      <h3>Logout</h3>
+
+      <p>Are you sure you want to logout from HireAI?</p>
+
+      <div class="modal-buttons">
+        <button id="cancelLogout">Cancel</button>
+
+        <button id="confirmLogout">Logout</button>
       </div>
     </div>
+  </div>
 
-    <!-- Toast -->
+  <script src="../js/utils.js"></script>
+  <script src="../js/jobs.js"></script>
+</body>
 
-    <div id="toast" class="toast"></div>
-
-    <div id="logoutModal" class="modal">
-      <div class="modal-content">
-        <h3>Logout</h3>
-
-        <p>Are you sure you want to logout from HireAI?</p>
-
-        <div class="modal-buttons">
-          <button id="cancelLogout">Cancel</button>
-
-          <button id="confirmLogout">Logout</button>
-        </div>
-      </div>
-    </div>
-
-    <script src="../js/utils.js"></script>
-    <script src="../js/jobs.js"></script>
-  </body>
 </html>

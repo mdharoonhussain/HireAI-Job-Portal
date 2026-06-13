@@ -7,11 +7,12 @@ if (!token) {
 async function loadProfile() {
   try {
     const response = await fetch(
-      "https://hireai-job-portal.onrender.com/api/users/profile",
+      `https://hireai-job-portal.onrender.com/api/users/profile?t=${Date.now()}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
         },
+        cache: "no-store",
       },
     );
 

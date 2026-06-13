@@ -13,11 +13,12 @@ async function getJobs() {
 
   try {
     const response = await fetch(
-      "https://hireai-job-portal.onrender.com/api/jobs",
+      `https://hireai-job-portal.onrender.com/api/jobs?t=${Date.now()}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
         },
+        cache: "no-store",
       },
     );
 
@@ -120,6 +121,23 @@ function displayJobs(jobs) {
 async function applyJob(jobId) {
   console.log("APPLY CLICKED", jobId);
 
+  // Store original state for potential reversion
+  const wasAlreadyApplied = appliedJobs.includes(jobId);
+  const applyBtn = document.getElementById(`apply-${jobId}`);
+  if (applyBtn) {
+    // Replace with a disabled "Applied" button immediately for instant visual feedback
+    applyBtn.outerHTML = `
+      <button class="applied-btn" disabled>
+        Applied
+      </button>
+    `;
+  }
+
+  // Update in-memory array immediately
+  if (!wasAlreadyApplied) {
+    appliedJobs.push(jobId);
+  }
+
   try {
     const response = await fetch(
       `https://hireai-job-portal.onrender.com/api/applications/${jobId}`,
@@ -132,34 +150,47 @@ async function applyJob(jobId) {
     );
 
     console.log("FETCH FINISHED");
-
     const data = await response.json();
-
     console.log("DATA RECEIVED", data);
 
     if (data.success) {
       showToast("Application submitted successfully", "success");
-
       await getAppliedJobs();
-
       displayJobs(allJobs);
+    } else {
+      showToast(data.message || "Failed to apply", "error");
+      revertApply(jobId, wasAlreadyApplied);
     }
   } catch (error) {
     console.log("ERROR OCCURRED");
     console.log(error);
+    showToast("Something went wrong", "error");
+    revertApply(jobId, wasAlreadyApplied);
   }
 }
+
+function revertApply(jobId, wasAlreadyApplied) {
+  if (!wasAlreadyApplied) {
+    const index = appliedJobs.indexOf(jobId);
+    if (index > -1) {
+      appliedJobs.splice(index, 1);
+    }
+  }
+  displayJobs(allJobs);
+}
+
 
 let appliedJobs = [];
 
 async function getAppliedJobs() {
   try {
     const response = await fetch(
-      "https://hireai-job-portal.onrender.com/api/applications/my-applications",
+      `https://hireai-job-portal.onrender.com/api/applications/my-applications?t=${Date.now()}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
         },
+        cache: "no-store",
       },
     );
 

@@ -17,11 +17,12 @@ const viewResumeBtn = document.getElementById("viewResumeBtn");
 async function loadProfile() {
   try {
     const response = await fetch(
-      "https://hireai-job-portal.onrender.com/api/users/profile",
+      `https://hireai-job-portal.onrender.com/api/users/profile?t=${Date.now()}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
         },
+        cache: "no-store",
       },
     );
 
@@ -52,13 +53,11 @@ async function loadProfile() {
       if (user.resumeUrl) {
         viewResumeBtn.style.display = "inline-block";
 
-        viewResumeBtn.href = user.resumeUrl;
-      }
-
-      if (user.resumeUrl.startsWith("http")) {
-        viewResumeBtn.href = user.resumeUrl;
-      } else {
-        viewResumeBtn.href = `https://hireai-job-portal.onrender.com${user.resumeUrl}`;
+        if (user.resumeUrl.startsWith("http")) {
+          viewResumeBtn.href = user.resumeUrl;
+        } else {
+          viewResumeBtn.href = `https://hireai-job-portal.onrender.com${user.resumeUrl}`;
+        }
       }
     }
   } catch (error) {

@@ -68,11 +68,12 @@ confirmDelete.addEventListener("click", async () => {
 async function getMyJobs() {
   try {
     const response = await fetch(
-      "https://hireai-job-portal.onrender.com/api/jobs/recruiter/jobs",
+      `https://hireai-job-portal.onrender.com/api/jobs/recruiter/jobs?t=${Date.now()}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
         },
+        cache: "no-store",
       },
     );
 

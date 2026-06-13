@@ -7,11 +7,12 @@ if (!token) {
 async function loadProfile() {
   try {
     const response = await fetch(
-      "https://hireai-job-portal.onrender.com/api/users/profile",
+      `https://hireai-job-portal.onrender.com/api/users/profile?t=${Date.now()}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
         },
+        cache: "no-store",
       },
     );
 
@@ -45,11 +46,12 @@ cancelLogout.addEventListener("click", () => {
 async function getRecruiterStats() {
   try {
     const response = await fetch(
-      "https://hireai-job-portal.onrender.com/api/applications/recruiter/stats",
+      `https://hireai-job-portal.onrender.com/api/applications/recruiter/stats?t=${Date.now()}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
         },
+        cache: "no-store",
       },
     );
 
