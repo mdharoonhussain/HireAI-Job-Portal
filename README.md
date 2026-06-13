@@ -4,7 +4,7 @@ A full-stack Job Portal application that connects Candidates and Recruiters thro
 
 ## Live Demo
 
-Frontend: https://hireai-portal.netlify.app/index.html
+Frontend: https://hireai-portal.netlify.app/
 
 ## Features
 
