@@ -25,17 +25,32 @@ async function loadProfile() {
   }
 }
 
-loadProfile();
 
 const logoutBtn = document.getElementById("logoutBtn");
 
-logoutBtn.addEventListener("click", () => {
-  localStorage.removeItem("token");
-  localStorage.removeItem("role");
+const logoutModal = document.getElementById("logoutModal");
 
+const confirmLogout = document.getElementById("confirmLogout");
+
+const cancelLogout = document.getElementById("cancelLogout");
+
+logoutBtn.addEventListener("click", () => {
+  logoutModal.classList.add("show");
+});
+
+cancelLogout.addEventListener("click", () => {
+  logoutModal.classList.remove("show");
+});
+
+confirmLogout.addEventListener("click", () => {
   showToast("Logged out successfully", "success");
 
   setTimeout(() => {
+    localStorage.clear();
+
     window.location.href = "../login.html";
   }, 1500);
 });
+
+
+loadProfile();
