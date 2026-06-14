@@ -351,9 +351,8 @@ if (
       );
 
       console.log("STATUS:", response.status);
-      const text = await response.text();
-      console.log("RAW RESPONSE:", text);
       const data = await response.json();
+      console.log("API RESPONSE:", data);
 
       if (data.success) {
         showToast("Password updated successfully", "success");
