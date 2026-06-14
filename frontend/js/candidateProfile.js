@@ -228,7 +228,12 @@ const newPasswordInput = document.getElementById("newPassword");
 const confirmNewPasswordInput = document.getElementById("confirmNewPassword");
 const passwordMatchMessage = document.getElementById("passwordMatchMessage");
 
-if (openChangePasswordBtn && changePasswordModal && cancelChangePassword && changePasswordForm) {
+if (
+  openChangePasswordBtn &&
+  changePasswordModal &&
+  cancelChangePassword &&
+  changePasswordForm
+) {
   openChangePasswordBtn.addEventListener("click", () => {
     changePasswordModal.classList.add("show");
   });
@@ -296,7 +301,10 @@ if (openChangePasswordBtn && changePasswordModal && cancelChangePassword && chan
     }
 
     if (!/[a-z]/.test(newPass)) {
-      showToast("New password must contain at least one lowercase letter (a-z)", "error");
+      showToast(
+        "New password must contain at least one lowercase letter (a-z)",
+        "error",
+      );
       return;
     }
 
@@ -306,7 +314,10 @@ if (openChangePasswordBtn && changePasswordModal && cancelChangePassword && chan
     }
 
     if (!/[@#$%^&+=!*()_\-\[\]{}|;:',./<>?~`]/.test(newPass)) {
-      showToast("New password must contain at least one special character (@, #, $, %, &, etc.)", "error");
+      showToast(
+        "New password must contain at least one special character (@, #, $, %, &, etc.)",
+        "error",
+      );
       return;
     }
 
@@ -316,6 +327,13 @@ if (openChangePasswordBtn && changePasswordModal && cancelChangePassword && chan
     }
 
     try {
+      console.log("CHANGE PASSWORD CLICKED");
+      console.log("URL:");
+      console.log(
+        "https://hireai-job-portal.onrender.com/api/users/change-password",
+      );
+      console.log("TOKEN:", token);
+
       const response = await fetch(
         "https://hireai-job-portal.onrender.com/api/users/change-password",
         {
@@ -329,9 +347,12 @@ if (openChangePasswordBtn && changePasswordModal && cancelChangePassword && chan
             newPassword: newPass,
             confirmPassword: confirmPass,
           }),
-        }
+        },
       );
 
+      console.log("STATUS:", response.status);
+      const text = await response.text();
+      console.log("RAW RESPONSE:", text);
       const data = await response.json();
 
       if (data.success) {

@@ -119,6 +119,8 @@ const uploadResumeFile = async (req, res) => {
 const changePassword = async (req, res) => {
   try {
     const { currentPassword, newPassword, confirmPassword } = req.body;
+    console.log("CHANGE PASSWORD API HIT");
+    console.log(req.body);
 
     if (!currentPassword || !newPassword || !confirmPassword) {
       return res.status(400).json({
@@ -152,7 +154,8 @@ const changePassword = async (req, res) => {
     if (!/[a-z]/.test(newPassword)) {
       return res.status(400).json({
         success: false,
-        message: "New password must contain at least one lowercase letter (a-z)",
+        message:
+          "New password must contain at least one lowercase letter (a-z)",
       });
     }
 
@@ -166,7 +169,8 @@ const changePassword = async (req, res) => {
     if (!/[@#$%^&+=!*()_\-\[\]{}|;:',./<>?~`]/.test(newPassword)) {
       return res.status(400).json({
         success: false,
-        message: "New password must contain at least one special character (@, #, $, %, &, etc.)",
+        message:
+          "New password must contain at least one special character (@, #, $, %, &, etc.)",
       });
     }
 
