@@ -8,10 +8,12 @@ const {
   updateProfile,
   uploadProfilePhoto,
   uploadResumeFile,
+  changePassword,
 } = require("../controllers/userController");
 
 router.get("/profile", protect, getProfile);
 router.put("/profile", protect, updateProfile);
+router.put("/change-password", protect, changePassword);
 
 router.put(
   "/upload-photo",

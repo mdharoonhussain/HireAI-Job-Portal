@@ -217,3 +217,132 @@ imageModal.addEventListener("click", (e) => {
 loadProfile();
 
 initializeLogout();
+
+// Change Password Modal Functionality
+const changePasswordModal = document.getElementById("changePasswordModal");
+const openChangePasswordBtn = document.getElementById("openChangePasswordBtn");
+const cancelChangePassword = document.getElementById("cancelChangePassword");
+const changePasswordForm = document.getElementById("changePasswordForm");
+const currentPasswordInput = document.getElementById("currentPassword");
+const newPasswordInput = document.getElementById("newPassword");
+const confirmNewPasswordInput = document.getElementById("confirmNewPassword");
+const passwordMatchMessage = document.getElementById("passwordMatchMessage");
+
+if (openChangePasswordBtn && changePasswordModal && cancelChangePassword && changePasswordForm) {
+  openChangePasswordBtn.addEventListener("click", () => {
+    changePasswordModal.classList.add("show");
+  });
+
+  const closeModal = () => {
+    changePasswordModal.classList.remove("show");
+    changePasswordForm.reset();
+    passwordMatchMessage.textContent = "";
+  };
+
+  cancelChangePassword.addEventListener("click", closeModal);
+
+  changePasswordModal.addEventListener("click", (e) => {
+    if (e.target === changePasswordModal) {
+      closeModal();
+    }
+  });
+
+  const checkPasswordMatch = () => {
+    const newPass = newPasswordInput.value;
+    const confirmPass = confirmNewPasswordInput.value;
+
+    if (!confirmPass) {
+      passwordMatchMessage.textContent = "";
+      return;
+    }
+
+    if (newPass === confirmPass) {
+      passwordMatchMessage.textContent = "✓ Passwords Match";
+      passwordMatchMessage.style.color = "#16a34a";
+    } else {
+      passwordMatchMessage.textContent = "✗ Passwords Do Not Match";
+      passwordMatchMessage.style.color = "#dc2626";
+    }
+  };
+
+  newPasswordInput.addEventListener("input", checkPasswordMatch);
+  confirmNewPasswordInput.addEventListener("input", checkPasswordMatch);
+
+  changePasswordForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const currentPass = currentPasswordInput.value;
+    const newPass = newPasswordInput.value;
+    const confirmPass = confirmNewPasswordInput.value;
+
+    if (!currentPass || !newPass || !confirmPass) {
+      showToast("All password fields are required", "error");
+      return;
+    }
+
+    if (newPass !== confirmPass) {
+      showToast("Passwords do not match", "error");
+      return;
+    }
+
+    if (newPass.length < 6) {
+      showToast("New password must be at least 6 characters long", "error");
+      return;
+    }
+
+    if (!/^[A-Z]/.test(newPass)) {
+      showToast("New password must start with a Capital Letter (A-Z)", "error");
+      return;
+    }
+
+    if (!/[a-z]/.test(newPass)) {
+      showToast("New password must contain at least one lowercase letter (a-z)", "error");
+      return;
+    }
+
+    if (!/[0-9]/.test(newPass)) {
+      showToast("New password must contain at least one number (0-9)", "error");
+      return;
+    }
+
+    if (!/[@#$%^&+=!*()_\-\[\]{}|;:',./<>?~`]/.test(newPass)) {
+      showToast("New password must contain at least one special character (@, #, $, %, &, etc.)", "error");
+      return;
+    }
+
+    if (/\s/.test(newPass)) {
+      showToast("Spaces are not allowed in the new password", "error");
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        "https://hireai-job-portal.onrender.com/api/users/change-password",
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            currentPassword: currentPass,
+            newPassword: newPass,
+            confirmPassword: confirmPass,
+          }),
+        }
+      );
+
+      const data = await response.json();
+
+      if (data.success) {
+        showToast("Password updated successfully", "success");
+        closeModal();
+      } else {
+        showToast(data.message || "Failed to update password", "error");
+      }
+    } catch (error) {
+      console.error(error);
+      showToast("Something went wrong", "error");
+    }
+  });
+}

@@ -159,3 +159,47 @@ p{
   text-align: center;
   margin-bottom: 40px;
 }
+
+/* Change Password Feature Styles */
+.change-password-btn {
+  width: 100%;
+  background: #4b5563;
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: 0.3s;
+  text-align: center;
+}
+
+.change-password-btn:hover {
+  background: #374151;
+}
+
+.change-password-btn-recruiter {
+  background: #4b5563;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-left: 10px;
+  font-weight: 600;
+  font-size: 15px;
+  transition: 0.3s;
+}
+
+.change-password-btn-recruiter:hover {
+  background: #374151;
+}
+
+.password-status-message {
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 5px;
+  display: block;
+}
